@@ -27,11 +27,13 @@
 #include <qwt_dial_needle.h>
 #include <QResizeEvent>
 
+#include "assert.h"
+
 #define INTERVAL 90
 
 //------------------------------------------------------------------------------
-PitchCompassDrawWidget::PitchCompassDrawWidget(QWidget *parent, const char* name, int mode)
-  : QWidget(parent, name, Qt::WDestructiveClose)
+PitchCompassDrawWidget::PitchCompassDrawWidget(QWidget *parent, const char* name, int mode):
+  QWidget(parent, name, Qt::WDestructiveClose)
 {
     this->mode = mode;
 
@@ -39,10 +41,20 @@ PitchCompassDrawWidget::PitchCompassDrawWidget(QWidget *parent, const char* name
     compass->setLineWidth(4);
     compass->setFrameShadow(QwtCompass::Sunken);
     
+#if QWT_VERSION >= 0x060000
+    QwtCompassScaleDraw *l_scale_draw = new QwtCompassScaleDraw();
+#endif // QWT_VERSION >= 0x060000
+
     if (mode == 0)
       {
 	compass->setMode(QwtCompass::RotateNeedle);
+#if QWT_VERSION >= 0x060000
+	compass->setScale(36, 5);
+	// Stepping is now defined by qwt_abstract_slider
+	compass->setSingleSteps(0);
+#else
 	compass->setScale(36, 5, 0);
+#endif // QWT_VERSION >= 0x060000
       }
     else if (mode == 1)
       {
@@ -51,17 +63,41 @@ PitchCompassDrawWidget::PitchCompassDrawWidget(QWidget *parent, const char* name
       }
     else if (mode == 2)
       {
-	QMap< double, QString > notes;
 	compass->setMode(QwtCompass::RotateNeedle);
+	QMap< double, QString > notes;
+#if QWT_VERSION >= 0x060000
+	compass->setScale(11, 2);
+	// Stepping is now defined by qwt_abstract_slider
+	compass->setSingleSteps(30);
+	for (int i = 0; i < 12; i++)
+	  {
+	    notes[i] = noteName(i);
+	  }
+	l_scale_draw->setLabelMap(notes);
+#else
 	compass->setScale(11, 2, 30);
 	for (int i = 0; i < 12; i++)
 	  {
 	    notes[i * 30] = noteName(i);
 	  }
 	compass->setLabelMap(notes);
+#endif // QWT_VERSION >= 0x060000
       }
 
+#if QWT_VERSION >= 0x060000
+    // I assume that y defualt Ticks Labels and backbone where displayed with Qwt 5.x
+    l_scale_draw->enableComponent( QwtAbstractScaleDraw::Ticks, true );
+    l_scale_draw->enableComponent( QwtAbstractScaleDraw::Labels, true );
+    l_scale_draw->enableComponent( QwtAbstractScaleDraw::Backbone, true );
+
+    // setScaleTicks method is now replaced by setTickLegnth of QwtAbstractScaleDraw
+    l_scale_draw->setTickLength( QwtScaleDiv::MinorTick,10);
+    l_scale_draw->setTickLength( QwtScaleDiv::MediumTick,20);
+    l_scale_draw->setTickLength( QwtScaleDiv::MajorTick,30);
+    compass->setScaleDraw(l_scale_draw);
+#else
     compass->setScaleTicks(1, 1, 3);
+#endif // QWT_VERSION >= 0x060000
 
     compass->setNeedle(new QwtCompassMagnetNeedle(QwtCompassMagnetNeedle::ThinStyle));
     compass->setValue(0.0);
@@ -110,10 +146,26 @@ void PitchCompassDrawWidget::updateCompass(double time)
 	  double value = (pitch - zeroVal) * INTERVAL;
 	  compass->setValue(value);
   
-	  notes[INTERVAL * 3] = noteName(toInt(zeroVal));
-	  notes[0] = noteName(toInt(zeroVal += 2));
-	  notes[INTERVAL] = noteName(toInt(zeroVal));
+#if QWT_VERSION >= 0x060000
+	  // With Qwt 6.x the map values should match the scale
+	  // In mode 0 scale is 36 isntead of 360 so need to divide keys by 10
+	  unsigned int l_div = 10;
+#else
+	  unsigned int l_div = 1;
+#endif // QWT_VERSION >= 0x060000
+
+	  notes[(INTERVAL * 3 ) / l_div] = noteName(toInt(zeroVal));
+	  notes[0 / l_div] = noteName(toInt(zeroVal += 2));
+	  notes[INTERVAL / l_div] = noteName(toInt(zeroVal));
+
+#if QWT_VERSION >= 0x060000
+	  QwtCompassScaleDraw * l_scale_draw = dynamic_cast<QwtCompassScaleDraw*>(compass->scaleDraw());
+	  assert(l_scale_draw);
+	  l_scale_draw->setLabelMap(notes);
+#else
 	  compass->setLabelMap(notes);
+#endif // QWT_VERSION >= 0x060000
+
 	}
       else if (mode == 1)
 	{
@@ -133,15 +185,21 @@ void PitchCompassDrawWidget::updateCompass(double time)
 	  notes[start] = noteName(toInt(closePitch));
 	  notes[start - INTERVAL] = noteName(toInt(closePitch - 1));
 	  notes[start + INTERVAL] = noteName(toInt(closePitch + 1));
+
+#if QWT_VERSION >= 0x060000
+	  QwtCompassScaleDraw * l_scale_draw = dynamic_cast<QwtCompassScaleDraw*>(compass->scaleDraw());
+	  assert(l_scale_draw);
+	  l_scale_draw->setLabelMap(notes);
+#else
 	  compass->setLabelMap(notes);
+#endif // QWT_VERSION >= 0x060000
 	}
       else
 	{
 	  // mode == 2
 	  double value = pitch * 30;
-	  compass->setValue(value);
+	  compass->setValue(value);  
 	}
-
       compass->setValid(true);
     }
   else
@@ -158,7 +216,13 @@ void PitchCompassDrawWidget::blank(void)
       if (mode != 2)
 	{
 	  QMap< double, QString > notes;
+#if QWT_VERSION >= 0x060000
+	  QwtCompassScaleDraw * l_scale_draw = dynamic_cast<QwtCompassScaleDraw*>(compass->scaleDraw());
+	  assert(l_scale_draw);
+	  l_scale_draw->setLabelMap(notes);
+#else
 	  compass->setLabelMap(notes);
+#endif // QWT_VERSION >= 0x060000
 	}
       compass->setValid(false);
       blankCount = 1;
