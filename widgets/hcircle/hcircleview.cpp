@@ -57,7 +57,16 @@ HCircleView::HCircleView( int viewID_, QWidget *parent):
   QwtWheel * ZoomWheel = new QwtWheel(this);
   ZoomWheel->setOrientation(Qt::Vertical);
   ZoomWheel->setWheelWidth(14);
+
+#if QWT_VERSION >= 0x060000
+  ZoomWheel->setRange(0.001, 0.1);
+  ZoomWheel->setSingleStep(0.001);
+  // Multiplicator value is 1000 = 1 / 0.001
+  ZoomWheel->setPageStepCount(1000);
+#else
   ZoomWheel->setRange(0.001, 0.1, 0.001, 1);
+#endif // QWT_VERSION >= 0x060000
+
   ZoomWheel->setValue(0.007);
   hCircleWidget->setZoom(0.007);
   QToolTip::add(ZoomWheel, "Zoom in or out");
@@ -66,7 +75,16 @@ HCircleView::HCircleView( int viewID_, QWidget *parent):
   QwtWheel * lowestValueWheel = new QwtWheel(this);
   lowestValueWheel->setOrientation(Qt::Vertical);
   lowestValueWheel->setWheelWidth(14);
+
+#if QWT_VERSION >= 0x060000
+  lowestValueWheel->setRange(-160, 10);
+  lowestValueWheel->setSingleStep(0.01);
+  // Multiplicator value is 100 = 1 / 0.01
+  lowestValueWheel->setPageStepCount(100);
+#else
   lowestValueWheel->setRange(-160, 10, 0.01, 1);
+#endif // QWT_VERSION >= 0x060000
+
   lowestValueWheel->setValue(-100);
   hCircleWidget->setLowestValue(-100);
   QToolTip::add(lowestValueWheel, "Change the lowest value");
@@ -76,7 +94,16 @@ HCircleView::HCircleView( int viewID_, QWidget *parent):
   QwtWheel* thresholdWheel = new QwtWheel(this);
   thresholdWheel->setOrientation(Qt::Horizontal);
   thresholdWheel->setWheelWidth(14);
+
+#if QWT_VERSION >= 0x060000
+  thresholdWheel->setRange(-160, 10);
+  thresholdWheel->setSingleStep(0.01);
+  // Multiplicator value is 100 = 1 / 0.01
+  thresholdWheel->setPageStepCount(100);
+#else
   thresholdWheel->setRange(-160, 10, 0.01, 1);
+#endif // QWT_VERSION >= 0x060000
+
   thresholdWheel->setValue(-100);
   hCircleWidget->setThreshold(-100);
   QToolTip::add(thresholdWheel, "Change the harmonic threshold");

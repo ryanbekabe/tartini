@@ -241,7 +241,16 @@ VibratoView::VibratoView( int viewID_, QWidget * parent):
   QwtWheel * zoomWheelV = new QwtWheel;
   zoomWheelV->setOrientation(Qt::Vertical);
   zoomWheelV->setWheelWidth(14);
+
+#if QWT_VERSION >= 0x060000
+  zoomWheelV->setRange(0.3, 25.0);
+  zoomWheelV->setSingleStep(0.1);
+  // Multiplicator value is 10 = 1 / 0.1
+  zoomWheelV->setPageStepCount(10);
+#else
   zoomWheelV->setRange(0.3, 25.0, 0.1, 1);
+#endif // QWT_VERSION >= 0x060000
+
   zoomWheelV->setValue(1.0);
   zoomWheelV->setFocusPolicy(Qt::NoFocus);
   QToolTip::add(zoomWheelV, "Zoom vibrato view vertically");
@@ -271,7 +280,15 @@ VibratoView::VibratoView( int viewID_, QWidget * parent):
   QwtWheel *zoomWheelH = new QwtWheel;
   zoomWheelH->setOrientation(Qt::Horizontal);
   zoomWheelH->setWheelWidth(14);
+
+#if QWT_VERSION >= 0x060000
+  zoomWheelH->setRange(1, 100);
+  zoomWheelH->setSingleStep(1);
+  zoomWheelH->setPageStepCount(1);
+#else
   zoomWheelH->setRange(1, 100, 1, 1);
+#endif // QWT_VERSION >= 0x060000
+
   zoomWheelH->setValue(25);
   zoomWheelH->setFocusPolicy(Qt::NoFocus);
   QToolTip::add(zoomWheelH, "Zoom vibrato view horizontally");

@@ -54,18 +54,45 @@ HTrackView::HTrackView( int viewID_, QWidget *parent ):
   
   rotateXWheel = new QwtWheel(this);
   rotateXWheel->setWheelWidth(20);
+
+#if QWT_VERSION >= 0x060000
+  rotateXWheel->setRange(-180, 180);
+  rotateXWheel->setSingleStep(0.1);
+  // Multiplicator value is 10 = 1 / 0.1
+  rotateXWheel->setPageStepCount(10);
+#else
   rotateXWheel->setRange(-180, 180, 0.1, 1);
+#endif // QWT_VERSION >= 0x060000
+
   QToolTip::add(rotateXWheel, "Rotate piano horizonally");
   
   rotateYWheel = new QwtWheel(this);
   rotateYWheel->setOrientation(Qt::Vertical);
   rotateYWheel->setWheelWidth(20);
+
+#if QWT_VERSION >= 0x060000
+  rotateYWheel->setRange(-90, 0);
+  rotateXWheel->setSingleStep(0.1);
+  // Multiplicator value is 10 = 1 / 0.1
+  rotateXWheel->setPageStepCount(10);
+#else
   rotateYWheel->setRange(-90, 0, 0.1, 1);
+#endif // QWT_VERSION >= 0x060000
+
   QToolTip::add(rotateYWheel, "Rotate piano vertically");
   
   distanceWheel = new QwtWheel(this);
   distanceWheel->setOrientation(Qt::Vertical);
+
+#if QWT_VERSION >= 0x060000
+  distanceWheel->setRange(100, 5000);
+  distanceWheel->setSingleStep(10);
+  // Multiplicator value is 2 = 20 / 10
+  distanceWheel->setPageStepCount(2);
+#else
   distanceWheel->setRange(100, 5000, 10, 20);
+#endif // QWT_VERSION >= 0x060000
+
   distanceWheel->setTotalAngle(20*360);
   QToolTip::add(distanceWheel, "Move towards/away from piano");
   

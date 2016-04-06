@@ -45,7 +45,16 @@ ScoreView::ScoreView(int viewID_, QWidget * parent):
   QwtWheel *scaleWheelY = new QwtWheel(this);
   scaleWheelY->setOrientation(Qt::Vertical);
   scaleWheelY->setWheelWidth(14);
+
+#if QWT_VERSION >= 0x060000
+  scaleWheelY->setRange(1.0, 30.0);
+  scaleWheelY->setSingleStep(0.1);
+  // Multiplicator value is 100 = 1 / 0.01
+  scaleWheelY->setPageStepCount(10);
+#else
   scaleWheelY->setRange(1.0, 30.0, 0.1, 1);
+#endif // QWT_VERSION >= 0x060000
+
   scaleWheelY->setValue(scoreWidget->scaleY());
   QToolTip::add(scaleWheelY, tr("Zoom vertically"));
   rightLayout->addWidget(scaleWheelY, 1);
@@ -57,7 +66,15 @@ ScoreView::ScoreView(int viewID_, QWidget * parent):
   QwtWheel * scaleWheelX = new QwtWheel(this);
   scaleWheelX->setOrientation(Qt::Horizontal);
   scaleWheelX->setWheelWidth(16);
+
+#if QWT_VERSION >= 0x060000
+  scaleWheelX->setRange(1.0, 100.0);
+  scaleWheelX->setSingleStep(1.1);
+  scaleWheelX->setPageStepCount(1);
+#else
   scaleWheelX->setRange(1.0, 100.0, 1.1, 1);
+#endif // QWT_VERSION >= 0x060000
+
   scaleWheelX->setValue(scoreWidget->scaleX());
   QToolTip::add(scaleWheelX, tr("Zoom horizontally"));
   connect(scaleWheelX, SIGNAL(sliderMoved(double)), scoreWidget, SLOT(setScaleX(double)));

@@ -56,7 +56,14 @@ HStackView::HStackView( int viewID_, QWidget * parent):
   QwtWheel * dbRangeWheel = new QwtWheel(this);
   dbRangeWheel->setOrientation(Qt::Vertical);
   dbRangeWheel->setWheelWidth(14);
+#if QWT_VERSION >= 0x060000
+  dbRangeWheel->setRange(5, 160.0);
+  dbRangeWheel->setSingleStep(0.1);
+  // Multiplicator value is 1000 = 100 * 0.1
+  dbRangeWheel->setPageStepCount(1000);
+#else
   dbRangeWheel->setRange(5, 160.0, 0.1, 100);
+#endif // QWT_VERSION >= 0x060000
   dbRangeWheel->setValue(100);
   QToolTip::add(dbRangeWheel, "Zoom dB range vertically");
   rightLayout->addWidget(dbRangeWheel, 0);
@@ -65,7 +72,16 @@ HStackView::HStackView( int viewID_, QWidget * parent):
   QwtWheel * windowSizeWheel = new QwtWheel(this);
   windowSizeWheel->setOrientation(Qt::Horizontal);
   windowSizeWheel->setWheelWidth(14);
+
+#if QWT_VERSION >= 0x060000
+  windowSizeWheel->setRange(32, 1024);
+  windowSizeWheel->setSingleStep(2);
+  // Sould be 0.5 but put to 1 because 0 zero value disable page stepping
+  windowSizeWheel->setPageStepCount(1);
+#else
   windowSizeWheel->setRange(32, 1024, 2, 1);
+#endif // QWT_VERSION >= 0x060000
+
   windowSizeWheel->setValue(128);
   QToolTip::add(windowSizeWheel, "Zoom windowsize horizontally");
   bottomLayout->addWidget(windowSizeWheel, 0);
