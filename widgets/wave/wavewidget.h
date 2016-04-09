@@ -18,13 +18,11 @@
 #define WAVEWIDGET_H
 
 #include "drawwidget.h"
-#include <QPixmap>
-#include <Q3PointArray>
+#include <QPolygon>
 #include <QPaintEvent>
 
 // Forward declarations of classes the h file doesn't need to know specifics about
 class QPixmap;
-class Q3PointArray;
 
 class WaveWidget : public DrawWidget
 {
@@ -46,7 +44,7 @@ class WaveWidget : public DrawWidget
   void setZoomY(const double & zoomY_);
 
  private:
-  Q3PointArray m_point_array;
+  QPolygon m_point_array;
   double m_zoom_Y;
 
 };
