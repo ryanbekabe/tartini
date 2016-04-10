@@ -68,7 +68,6 @@ HStackWidget::~HStackWidget(void)
 void HStackWidget::paintEvent(QPaintEvent *)
 {
   Channel * active = gdata->getActiveChannel();
-  QPolygon points;
 
   beginDrawing();
 
