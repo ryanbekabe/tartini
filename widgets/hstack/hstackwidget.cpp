@@ -14,9 +14,9 @@
    
    Please read LICENSE.txt for details.
  ***************************************************************************/
-#include <qpixmap.h>
-#include <qpainter.h>
-#include <Q3PointArray>
+#include <QPixmap>
+#include <QPainter>
+#include <QPolygon>
 #include <QPaintEvent>
 
 #include "hstackwidget.h"
@@ -68,7 +68,7 @@ HStackWidget::~HStackWidget(void)
 void HStackWidget::paintEvent(QPaintEvent *)
 {
   Channel * active = gdata->getActiveChannel();
-  Q3PointArray points;
+  QPolygon points;
 
   beginDrawing();
 
@@ -86,7 +86,7 @@ void HStackWidget::paintEvent(QPaintEvent *)
     float scaleX = (float)width() / (float)windowSize;
     int notOnGraph = height() + 10;
 
-    Q3PointArray points[numHarmonics];
+    QPolygon points[numHarmonics];
 
     for (j = 0; j < numHarmonics; j++)
     {

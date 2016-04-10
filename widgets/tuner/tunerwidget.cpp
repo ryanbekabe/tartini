@@ -14,9 +14,8 @@
    
    Please read LICENSE.txt for details.
  ***************************************************************************/
-#include <qpixmap.h>
-#include <qpainter.h>
-#include <Q3PointArray>
+#include <QPixmap>
+#include <QPainter>
 #include <QPaintEvent>
 
 #include "tunerwidget.h"
@@ -164,7 +163,7 @@ void TunerWidget::paintEvent(QPaintEvent *)
     if(intensity_ > 0.0)
       {
 	get_painter().setBrush(colorBetween(Qt::white, Qt::red, intensity_));
-	Q3PointArray points(3);
+	QPolygon points(3);
 	points.setPoint(0, noteX);
 	points.setPoint(1, knobRight);
 	points.setPoint(2, knobLeft);
