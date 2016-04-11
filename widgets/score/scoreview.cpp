@@ -19,9 +19,9 @@
 #include "scorewidget.h"
 #include "gdata.h"
 #include "qwt_wheel.h"
-#include "qlayout.h"
-#include <Q3VBoxLayout>
-#include <Q3HBoxLayout>
+#include <QLayout>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QResizeEvent>
 #include <QToolTip>
 #include <QComboBox>
@@ -31,15 +31,15 @@ ScoreView::ScoreView(int viewID_, QWidget * parent):
   ViewWidget( viewID_, parent)
 {
 
-  Q3BoxLayout * mainLayout = new Q3HBoxLayout(this);
+  QHBoxLayout * mainLayout = new QHBoxLayout(this);
 
-  Q3BoxLayout * leftLayout = new Q3VBoxLayout(mainLayout);
-  Q3BoxLayout * rightLayout = new Q3VBoxLayout(mainLayout);
+  QVBoxLayout * leftLayout = new QVBoxLayout(mainLayout);
+  QVBoxLayout * rightLayout = new QVBoxLayout(mainLayout);
 
   //create a drawing object
   scoreWidget = new ScoreWidget(this);
   leftLayout->addWidget(scoreWidget);
-  Q3BoxLayout *bottomLayout = new Q3HBoxLayout(leftLayout);
+  QHBoxLayout * bottomLayout = new QHBoxLayout(leftLayout);
 
   //vertical scroll wheel
   QwtWheel *scaleWheelY = new QwtWheel(this);
