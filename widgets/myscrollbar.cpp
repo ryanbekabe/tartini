@@ -13,10 +13,10 @@
    Please read LICENSE.txt for details.
  ***************************************************************************/
 
-#include <qscrollbar.h>
+#include <QScrollBar>
 #include <QResizeEvent>
 #include "myscrollbar.h"
-#include <qlayout.h>
+#include <QLayout>
 
 //------------------------------------------------------------------------------
 MyScrollBar::MyScrollBar(Qt::Orientation orientation, QWidget *parent, const char *name):
