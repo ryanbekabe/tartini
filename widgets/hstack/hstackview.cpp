@@ -21,19 +21,18 @@
 #include "useful.h" 
 #include "myscrollbar.h"
 
-#include <qlayout.h>
-#include <qpushbutton.h>
-#include <qsizegrip.h>
-#include <qsplitter.h>
-#include <qtooltip.h>
-#include <q3grid.h>
+#include <QLayout>
+#include <QPushButton>
+#include <QSizeGrip>
+#include <QSplitter>
+#include <QToolTip>
 #include <qwt_wheel.h>
-#include <qcursor.h>
-#include <qcombobox.h>
-#include <qspinbox.h>
-#include <Q3VBoxLayout>
-#include <Q3HBoxLayout>
-#include <Q3Frame>
+#include <QCursor>
+#include <QComboBox>
+#include <QSpinBox>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QFrame>
 
 //------------------------------------------------------------------------------
 HStackView::HStackView( int viewID_, QWidget * parent):
@@ -41,17 +40,17 @@ HStackView::HStackView( int viewID_, QWidget * parent):
 {
   setCaption("Harmonic Stack");
 
-  Q3BoxLayout * mainLayout = new Q3HBoxLayout(this);
+  QHBoxLayout * mainLayout = new QHBoxLayout(this);
 
-  Q3BoxLayout * leftLayout = new Q3VBoxLayout(mainLayout);
-  Q3BoxLayout * rightLayout = new Q3VBoxLayout(mainLayout);
+  QVBoxLayout * leftLayout = new QVBoxLayout(mainLayout);
+  QVBoxLayout * rightLayout = new QVBoxLayout(mainLayout);
 
-  Q3Grid * waveFrame = new Q3Grid(1, this);
-  waveFrame->setFrameStyle(Q3Frame::WinPanel | Q3Frame::Sunken);
+  QFrame * waveFrame = new QFrame(this);
+  waveFrame->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
   leftLayout->addWidget(waveFrame);
   hStackWidget = new HStackWidget(waveFrame);
   
-  Q3BoxLayout * bottomLayout = new Q3HBoxLayout(leftLayout);
+  QHBoxLayout * bottomLayout = new QHBoxLayout(leftLayout);
 
   QwtWheel * dbRangeWheel = new QwtWheel(this);
   dbRangeWheel->setOrientation(Qt::Vertical);
