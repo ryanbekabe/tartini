@@ -27,9 +27,6 @@
 #include <QSignalMapper>
 
 class Preferences;
-class Q3ListView;
-class Q3ListViewItem;
-class Q3DockWindow;
 class QLabel;
 class QwtSlider;
 class MyScrollBar;
@@ -99,7 +96,6 @@ class MainWindow : public QMainWindow
 
   void keyPressEvent(QKeyEvent * e);
   void message(QString s, int msec);
-  Q3ListView * theListView;
   
   QWorkspace * theWorkspace;
 

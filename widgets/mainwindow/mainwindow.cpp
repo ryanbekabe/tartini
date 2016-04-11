@@ -15,38 +15,35 @@
    Please read LICENSE.txt for details.
  ***************************************************************************/
 
-#include <qstatusbar.h>
-#include <qmenubar.h>
-#include <qsplitter.h>
-#include <qlayout.h>
-#include <qcheckbox.h>
-#include <qcombobox.h>
-#include <qpushbutton.h>
-#include <q3filedialog.h>
-#include <qworkspace.h>
-#include <qtoolbutton.h>
-#include <qlabel.h>
-#include <qspinbox.h>
-#include <qpixmap.h>
-#include <qtimer.h>
-#include <q3header.h>
-#include <qmetaobject.h>
-#include <qsizegrip.h>
-#include <qfileinfo.h>
-#include <qlabel.h>
+#include <QStatusBar>
+#include <QMenuBar>
+#include <QSplitter>
+#include <QLayout>
+#include <QCheckBox>
+#include <QComboBox>
+#include <QPushButton>
+#include <QWorkspace>
+#include <QToolButton>
+#include <QLabel>
+#include <QSpinBox>
+#include <QPixmap>
+#include <QTimer>
+#include <QMetaObject>
+#include <QSizeGrip>
+#include <QFileInfo>
+#include <QLabel>
 #include <QToolBar>
-#include <qtooltip.h>
-#include <qmime.h>
-#include <q3textedit.h>
-#include <qtextedit.h>
-#include <qtextstream.h>
+#include <QToolTip>
+#include <QMimeData>
+#include <QTextEdit>
+#include <QTextStream>
 #include <QTextBrowser>
 
 #include <qaction.h>
 #include <QKeyEvent>
 #include <QEvent>
-#include <Q3HBoxLayout>
-#include <Q3VBoxLayout>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 #include <QCustomEvent>
 #include <QPrinter>
 #include <QPrintDialog>
@@ -86,9 +83,8 @@
 #include "savedialog.h"
 #include "opendialog.h"
 #include "tartinisettingsdialog.h"
-#include <qlineedit.h>
-#include <q3listview.h>
-#include <qmessagebox.h>
+#include <QLineEdit>
+#include <QMessageBox>
 #include <qwt_slider.h>
 #include <QLabel>
 #include <QWhatsThis>
@@ -1141,9 +1137,9 @@ TartiniDialog::TartiniDialog(QWidget *parent):
 {
   setCaption("About Tartini - Version " TARTINI_VERSION_STR);
   setBackgroundColor(Qt::black);
-  Q3BoxLayout * layout = new Q3VBoxLayout(this, 6, 6);
+  QVBoxLayout * layout = new QVBoxLayout(this, 6, 6);
 
-  Q3BoxLayout * topLayout = new Q3HBoxLayout(layout);
+  QHBoxLayout * topLayout = new QHBoxLayout(layout);
   QLabel * tartiniPicture = new QLabel(this, "TartiniPicture");
   QPixmap tartiniPixmap(":/res/tartinilogo.jpg", "JPG");
   tartiniPicture->setPixmap(tartiniPixmap);
@@ -1221,7 +1217,7 @@ TartiniDialog::TartiniDialog(QWidget *parent):
   
   layout->addWidget(tartiniTextEdit);
   
-  Q3BoxLayout * bottomLayout = new Q3HBoxLayout(layout);
+  QHBoxLayout * bottomLayout = new QHBoxLayout(layout);
   QPushButton * okButton = new QPushButton("&Ok", this);
   QPushButton * GPLButton = new QPushButton("&Read License", this);
   bottomLayout->addStretch(10);
@@ -1239,9 +1235,9 @@ GPLDialog::GPLDialog(QWidget *parent):
   QDialog(parent, NULL, true)
 {
   setCaption("GPL Licence");
-  Q3BoxLayout * layout = new Q3VBoxLayout(this, 6, 6);
+  QVBoxLayout * layout = new QVBoxLayout(this, 6, 6);
 
-  Q3TextEdit * GPLTextEdit = new Q3TextEdit(this, "GPLTextEdit");
+  QTextEdit * GPLTextEdit = new QTextEdit(this, "GPLTextEdit");
   GPLTextEdit->setReadOnly(true);
   GPLTextEdit->setTextFormat(Qt::PlainText);
   QString theText;
@@ -1256,7 +1252,7 @@ GPLDialog::GPLDialog(QWidget *parent):
   
   layout->addWidget(GPLTextEdit);
   
-  Q3BoxLayout * bottomLayout = new Q3HBoxLayout(layout);
+  QHBoxLayout * bottomLayout = new QHBoxLayout(layout);
   QPushButton * okButton = new QPushButton("&Ok", this);
   bottomLayout->addStretch(10);
   bottomLayout->addWidget(okButton);
