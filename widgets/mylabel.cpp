@@ -20,8 +20,8 @@
 #include <QPaintEvent>
 
 //------------------------------------------------------------------------------
-MyLabel::MyLabel(const QString & text_, QWidget * parent, const char * name):
-  DrawWidget(parent, name),
+MyLabel::MyLabel(const QString &text_, QWidget *parent, const char * name):
+  DrawWidget(parent),
   _text(text_)
 {
   QFontMetrics fm = QFontMetrics(get_painter().font());

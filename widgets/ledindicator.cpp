@@ -22,8 +22,9 @@
 
 //------------------------------------------------------------------------------
 LEDIndicator::LEDIndicator(QPixmap *buffer, QWidget *parent, const char *name, const QColor &on, const QColor &off):
-  QWidget(parent, name)
+  QWidget(parent)
 {
+  setAccessibleName(name);
   setMinimumSize(sizeHint());
   this->on = on;
   this->off = off;
@@ -82,9 +83,9 @@ void LEDIndicator::paintEvent(QPaintEvent *)
 
   QFontMetrics fm = p.fontMetrics();
   int fontHeight = fm.height() / 4;
-  int fontWidth = fm.width(name()) / 2;
+  int fontWidth = fm.width(accessibleName()) / 2;
   
-  p.drawText(QWidget::width() / 2 - fontWidth, QWidget::height() / 2 + fontHeight, name());
+  p.drawText(QWidget::width() / 2 - fontWidth, QWidget::height() / 2 + fontHeight, accessibleName());
   p.end();
 
   // Swap buffers
