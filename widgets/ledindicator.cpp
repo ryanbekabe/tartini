@@ -32,8 +32,7 @@ LEDIndicator::LEDIndicator(QPixmap *buffer, QWidget *parent, const char *name, c
   active = false;
 
   // Stop QT from erasing the background all the time
-  setBackgroundMode(Qt::NoBackground);
-  this->buffer = buffer;
+  setAttribute(Qt::WA_OpaquePaintEvent);
 }
 
 //------------------------------------------------------------------------------
@@ -66,20 +65,12 @@ bool LEDIndicator::lit(void)
 //------------------------------------------------------------------------------
 void LEDIndicator::paintEvent(QPaintEvent *)
 {
-  // Double buffering
-  if (buffer->size() != size())
-    {
-      buffer->resize(size());
-    }
-
-  buffer->fill(colorGroup().background());
-  
   QPainter p;
-  p.begin(buffer, this);
+  p.begin(this);
 
   p.fillRect(0, 0, QWidget::width(), QWidget::height(), (active) ? on : off);
 
-  p.setPen(colorGroup().brightText());
+  p.setPen(QPalette::BrightText);
 
   QFontMetrics fm = p.fontMetrics();
   int fontHeight = fm.height() / 4;
@@ -87,9 +78,6 @@ void LEDIndicator::paintEvent(QPaintEvent *)
   
   p.drawText(QWidget::width() / 2 - fontWidth, QWidget::height() / 2 + fontHeight, accessibleName());
   p.end();
-
-  // Swap buffers
-  bitBlt(this, 0, 0, buffer);
 }
 
 //------------------------------------------------------------------------------
