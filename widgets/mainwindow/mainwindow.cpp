@@ -533,20 +533,20 @@ bool MainWindow::event(QEvent * e)
     }
   else if(e->type() == SOUND_STARTED)
     {
-      playStopAction->setIconSet(*stopIconSet);
+      playStopAction->setIcon(*stopIconSet);
       playStopAction->setText("Stop");
-      recordAction->setIconSet(*stopIconSet);
+      recordAction->setIcon(*stopIconSet);
       recordAction->setText("Stop");
-      playRecordAction->setIconSet(*stopIconSet);
+      playRecordAction->setIcon(*stopIconSet);
       playRecordAction->setText("Stop");
     }
   else if(e->type() == SOUND_STOPPED)
     {
-      playStopAction->setIconSet(*playIconSet);
+      playStopAction->setIcon(*playIconSet);
       playStopAction->setText("Play");
-      recordAction->setIconSet(*recordIconSet);
+      recordAction->setIcon(*recordIconSet);
       recordAction->setText("Record");
-      playRecordAction->setIconSet(*playRecordIconSet);
+      playRecordAction->setIcon(*playRecordIconSet);
       playRecordAction->setText("Play and Record");
     }
   else if(e->type() == SETTINGS_CHANGED)
