@@ -1153,18 +1153,20 @@ void MainWindow::showDocumentation(void)
 TartiniDialog::TartiniDialog(QWidget *parent):
   QDialog(parent)
 {
-  QHBoxLayout * topLayout = new QHBoxLayout(layout);
   setModal(true);
   setWindowTitle("About Tartini - Version " TARTINI_VERSION_STR);
   setBackgroundRole(QPalette::Shadow);
   QVBoxLayout * layout = new QVBoxLayout(this);
   layout->setContentsMargins(6,6,6,6);
   layout->setSpacing(6);
+
+  QHBoxLayout * topLayout = new QHBoxLayout();
+  layout->addLayout(topLayout);
   QLabel * tartiniPicture = new QLabel(this);
   tartiniPicture->setObjectName("TartiniPicture");
   QPixmap tartiniPixmap(":/res/tartinilogo.jpg", "JPG");
   tartiniPicture->setPixmap(tartiniPixmap);
-  tartiniPicture->setBackgroundColor(Qt::black);
+  tartiniPicture->setBackgroundRole(QPalette::Shadow);
   topLayout->addStretch(10);
   topLayout->addWidget(tartiniPicture);
   topLayout->addStretch(10);
