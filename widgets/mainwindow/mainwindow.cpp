@@ -657,7 +657,7 @@ void MainWindow::openFile(void)
     }
   s = QDir::convertSeparators(s);
   gdata->setSettingsValue("Dialogs/openFilesFolder", s);
-  openFile(s.latin1());
+  openFile(s.toStdString().c_str());
 }
 
 //------------------------------------------------------------------------------
@@ -706,7 +706,7 @@ void MainWindow::openRecord(bool andPlay)
   int rate = gdata->getSettingsValue("Sound/sampleRate", 44100);
   QString numberOfChannels = gdata->getSettingsValue("Sound/numberOfChannels", QString("mono"));
   int channels;
-  if(numberOfChannels.lower() == "mono")
+  if(numberOfChannels.toLower() == "mono")
     {
       channels = 1;
     }
@@ -746,11 +746,11 @@ void MainWindow::openRecord(bool andPlay)
 	}
     }
   while(fileExists);
-
-  SoundFile * newSoundFile = new SoundFile();
-  QString newFilename(fileInfo.absFilePath().latin1());
+  
+  SoundFile *newSoundFile = new SoundFile();
+  QString newFilename(fileInfo.absoluteFilePath());
   newFilename = QDir::convertSeparators(newFilename);
-  if(!newSoundFile->openWrite(newFilename, rate, channels, bits, windowSize, stepSize))
+  if(!newSoundFile->openWrite(newFilename.toStdString().c_str(), rate, channels, bits, windowSize, stepSize))
     {
       delete newSoundFile; newSoundFile = NULL;
       return;
