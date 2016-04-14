@@ -68,7 +68,8 @@ HTrackView::HTrackView( int viewID_, QWidget *parent ):
   distanceWheel->setTotalAngle(20*360);
   distanceWheel->setToolTip("Move towards/away from piano");
   
-  QPushButton * homeButton = new QPushButton("Reset", this, "homebutton");
+  QPushButton * homeButton = new QPushButton("Reset", this);
+  homeButton->setObjectName("homebutton");
   homeButton->setToolTip("Return to the original view");
   
   QSizeGrip * sizeGrip = new QSizeGrip(this);

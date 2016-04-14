@@ -34,8 +34,9 @@
 
 //------------------------------------------------------------------------------
 HTrackWidget::HTrackWidget(QWidget *parent, const char *name):
-  QGLWidget(parent, name)
+  QGLWidget(parent)
 {
+  setObjectName(name);
 }
 
 //------------------------------------------------------------------------------
