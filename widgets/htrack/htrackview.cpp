@@ -48,7 +48,10 @@ HTrackView::HTrackView( int viewID_, QWidget *parent ):
     "The height of each track is related to how much energy is at that frequency. "
     "Tracks alternate in colour for better visibility. It can be seen how the hamonics in a note fit into the musical scale.");
 
-  peakThresholdSlider = new QSlider(0, 100, 10, 5, Qt::Vertical, this);
+  peakThresholdSlider = new QSlider(Qt::Vertical, this);
+  peakThresholdSlider->setRange(0, 100);
+  peakThresholdSlider->setPageStep(10);
+  peakThresholdSlider->setValue(5);
   peakThresholdSlider->setToolTip("Thresholding of harmonics");
   
   rotateXWheel = new QwtWheel(this);
