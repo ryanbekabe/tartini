@@ -51,7 +51,8 @@ FreqDrawWidget::FreqDrawWidget(QWidget *parent, const char* name):
   
    dragMode = DragNone;
 
-   QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding, false);
+   QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+   sizePolicy.setHeightForWidth(false);
    setSizePolicy(sizePolicy);
 
    setFocusPolicy(Qt::StrongFocus);

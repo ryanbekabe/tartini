@@ -21,7 +21,9 @@
 VibratoTimeAxis::VibratoTimeAxis(QWidget *parent, int nls):
   DrawWidget(parent)
 {
-  setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false));
+  QSizePolicy l_size_policy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+  l_size_policy.setHeightForWidth(false);
+  setSizePolicy(l_size_policy);
 
   // The horizontal space in pixels a note label requires + 2 for the border of the VibratoWidget
   noteLabelOffset = nls + 2;

@@ -46,7 +46,9 @@ TimeAxis::TimeAxis(QWidget * p_parent, const double & p_left_time, const double 
 //------------------------------------------------------------------------------
 void TimeAxis::init(void)
 {
-  setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed, false));
+  QSizePolicy l_size_policy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+  l_size_policy.setHeightForWidth(false);
+  setSizePolicy(l_size_policy);
 
 #ifdef MACX
   setFontSize(14);
