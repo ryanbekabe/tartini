@@ -584,25 +584,25 @@ void AmplitudeWidget::mouseReleaseEvent(QMouseEvent *)
 void AmplitudeWidget::wheelEvent(QWheelEvent * e)
 {
   View & view = gdata->getView();
-    if (!(e->state() & (Qt::ControlModifier | Qt::ShiftModifier)))
-      {
-	if(gdata->getRunning() == STREAM_FORWARD)
-	  {
-	    view.setZoomFactorX(view.logZoomX() + double(e->delta() / WHEEL_DELTA) * 0.3);
-	  }
-	else
-	  {
-	    if(e->delta() < 0)
-	      {
-		view.setZoomFactorX(view.logZoomX() + double(e->delta() / WHEEL_DELTA) * 0.3, width() / 2);
-	      }
-	    else
-	      {
-		view.setZoomFactorX(view.logZoomX() + double(e->delta() / WHEEL_DELTA) * 0.3, e->x());
-	      }
-	  }
-	view.doSlowUpdate();
-      }
-    e->accept();
+  if (!(e->QInputEvent::modifiers() & (Qt::ControlModifier | Qt::ShiftModifier)))
+    {
+      if(gdata->getRunning() == STREAM_FORWARD)
+	{
+	  view.setZoomFactorX(view.logZoomX() + double(e->delta()/WHEEL_DELTA)*0.3);
+	}
+      else
+	{
+	  if(e->delta() < 0)
+	    {
+	      view.setZoomFactorX(view.logZoomX() + double(e->delta()/WHEEL_DELTA)*0.3, width()/2);
+	    }
+	  else
+	    {
+	      view.setZoomFactorX(view.logZoomX() + double(e->delta()/WHEEL_DELTA)*0.3, e->x());
+	    }
+	}
+      view.doSlowUpdate();
+    }
+  e->accept();
 }
 // EOF

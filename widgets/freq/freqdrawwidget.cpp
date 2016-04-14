@@ -251,20 +251,20 @@ void FreqDrawWidget::mousePressEvent( QMouseEvent *e)
     }
 
   // If the control or alt keys are pressed, zoom in or out on the correct axis, otherwise scroll.
-  if (e->state() & Qt::ControlModifier)
+  if (e->QInputEvent::modifiers() & Qt::ControlModifier)
     {
       // Do we zoom in or out?
-      if (e->state() & Qt::ShiftModifier)
+      if (e->QInputEvent::modifiers() & Qt::ShiftModifier)
 	{
 	}
       else
 	{
 	}
     }
-  else if (e->state() & Qt::AltModifier)
+  else if (e->QInputEvent::modifiers() & Qt::AltModifier)
     {
       // Do we zoom in or out?
-      if (e->state() & Qt::ShiftModifier)
+      if (e->QInputEvent::modifiers() & Qt::ShiftModifier)
 	{
 	}
       else
@@ -354,12 +354,13 @@ double FreqDrawWidget::mousePitch(int y)
 void FreqDrawWidget::wheelEvent(QWheelEvent * e)
 {
   View & view = gdata->getView();
-    double amount = double(e->delta() / WHEEL_DELTA);
-    bool isZoom = gdata->mouseWheelZooms();
-    if(e->state() & (Qt::ControlModifier | Qt::ShiftModifier))
-      {
-	isZoom = !isZoom;
-      }
+  double amount = double(e->delta() / WHEEL_DELTA);
+  bool isZoom = gdata->mouseWheelZooms();
+
+  if(e->QInputEvent::modifiers() & (Qt::ControlModifier | Qt::ShiftModifier))
+    {
+      isZoom = !isZoom;
+    }
 
   if(isZoom)
     {
@@ -435,11 +436,11 @@ void FreqDrawWidget::keyPressEvent( QKeyEvent *k )
       setCursor(QCursor(QPixmap(zoomy)));
       break;
     case Qt::Key_Shift:
-      if (k->state() & Qt::ControlModifier)
+      if (k->QInputEvent::modifiers() & Qt::ControlModifier)
 	{
 	  setCursor(QCursor(QPixmap(zoomxout)));
 	}
-      else if (k->state() & Qt::AltModifier)
+      else if (k->QInputEvent::modifiers() & Qt::AltModifier)
 	{
 	  setCursor(QCursor(QPixmap(zoomyout)));
 	}
@@ -464,11 +465,11 @@ void FreqDrawWidget::keyReleaseEvent( QKeyEvent *k)
       unsetCursor();
       break;
     case Qt::Key_Shift:
-      if (k->state() & Qt::ControlModifier)
+      if (k->QInputEvent::modifiers() & Qt::ControlModifier)
 	{
 	  setCursor(QCursor(QPixmap(zoomx)));
 	}
-      else if (k->state() & Qt::AltModifier)
+      else if (k->QInputEvent::modifiers() & Qt::AltModifier)
 	{
 	  setCursor(QCursor(QPixmap(zoomy)));
 	}
