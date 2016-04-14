@@ -42,8 +42,10 @@ HBubbleView::HBubbleView( int viewID_, QWidget *parent):
 
   QHBoxLayout *mainLayout = new QHBoxLayout(this);
 
-  QVBoxLayout *leftLayout = new QVBoxLayout(mainLayout);
-  QVBoxLayout *rightLayout = new QVBoxLayout(mainLayout);
+  QVBoxLayout *leftLayout = new QVBoxLayout();
+  mainLayout->addLayout(leftLayout);
+  QVBoxLayout *rightLayout = new QVBoxLayout();
+  mainLayout->addLayout(rightLayout);
  
   QFrame *waveFrame = new QFrame(this);
   waveFrame->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
@@ -51,7 +53,8 @@ HBubbleView::HBubbleView( int viewID_, QWidget *parent):
 
   hBubbleWidget = new HBubbleWidget(waveFrame);
 
-  QHBoxLayout *bottomLayout = new QHBoxLayout(leftLayout);
+  QHBoxLayout *bottomLayout = new QHBoxLayout();
+  leftLayout->addLayout(bottomLayout);
 
   QwtWheel* harmonicsWheel = new QwtWheel(this);
   harmonicsWheel->setOrientation(Qt::Vertical);

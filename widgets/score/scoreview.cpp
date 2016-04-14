@@ -33,13 +33,16 @@ ScoreView::ScoreView(int viewID_, QWidget * parent):
 
   QHBoxLayout * mainLayout = new QHBoxLayout(this);
 
-  QVBoxLayout * leftLayout = new QVBoxLayout(mainLayout);
-  QVBoxLayout * rightLayout = new QVBoxLayout(mainLayout);
+  QVBoxLayout * leftLayout = new QVBoxLayout();
+  mainLayout->addLayout(leftLayout);
+  QVBoxLayout * rightLayout = new QVBoxLayout();
+  mainLayout->addLayout(rightLayout);
 
   //create a drawing object
   scoreWidget = new ScoreWidget(this);
   leftLayout->addWidget(scoreWidget);
-  QHBoxLayout * bottomLayout = new QHBoxLayout(leftLayout);
+  QHBoxLayout * bottomLayout = new QHBoxLayout();
+  leftLayout->addLayout(bottomLayout);
 
   //vertical scroll wheel
   QwtWheel *scaleWheelY = new QwtWheel(this);

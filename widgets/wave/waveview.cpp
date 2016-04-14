@@ -37,8 +37,9 @@ WaveView::WaveView( int viewID_, QWidget *parent ):
   m_wave_widget = new WaveWidget(l_wave_frame);
   l_main_layout->addWidget(l_wave_frame);
 
-  QVBoxLayout * l_right_layout = new QVBoxLayout(l_main_layout);
-  
+  QVBoxLayout * l_right_layout = new QVBoxLayout();
+  l_main_layout->addLayout(l_right_layout);
+
   QwtWheel * l_freq_wheel_Y = new QwtWheel(this);
   l_freq_wheel_Y->setOrientation(Qt::Vertical);
   l_freq_wheel_Y->setWheelWidth(14);

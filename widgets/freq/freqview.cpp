@@ -53,7 +53,8 @@ FreqView::FreqView(int viewID_, QWidget *parent):
   QSplitter * splitter = new QSplitter(Qt::Vertical, this);
   QWidget * topWidget = new QWidget(splitter);
   QHBoxLayout * topLayout = new QHBoxLayout(topWidget);
-  QVBoxLayout * topLeftLayout = new QVBoxLayout(topLayout);
+  QVBoxLayout * topLeftLayout = new QVBoxLayout();
+  topLayout->addLayout(topLeftLayout);
   
   timeAxis = new TimeAxis(topWidget, gdata->leftTime(), gdata->rightTime(), true);
   timeAxis->setWhatsThis("The time in seconds");
@@ -97,8 +98,9 @@ FreqView::FreqView(int viewID_, QWidget *parent):
   
   QWidget * bottomWidget = new QWidget(splitter);
   QVBoxLayout * bottomLayout = new QVBoxLayout(bottomWidget);
-  QHBoxLayout * bottomTopLayout = new QHBoxLayout(bottomLayout);
-  
+  QHBoxLayout * bottomTopLayout = new QHBoxLayout();
+  bottomLayout->addLayout(bottomTopLayout);
+
   QFrame * amplitudeFrame = new QFrame;
   amplitudeFrame->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
   QVBoxLayout * amplitudeFrameLayout = new QVBoxLayout;
@@ -110,8 +112,9 @@ FreqView::FreqView(int viewID_, QWidget *parent):
   amplitudeFrame->setLayout(amplitudeFrameLayout);
   bottomTopLayout->addWidget(amplitudeFrame);
 
-  QVBoxLayout *bottomTopRightLayout = new QVBoxLayout(bottomTopLayout);
-  
+  QVBoxLayout *bottomTopRightLayout = new QVBoxLayout();
+  bottomTopLayout->addLayout(bottomTopRightLayout);
+
   amplitudeWheelY = new QwtWheel(bottomWidget);
   amplitudeWheelY->setOrientation(Qt::Vertical);
   amplitudeWheelY->setWheelWidth(14);
@@ -124,7 +127,8 @@ FreqView::FreqView(int viewID_, QWidget *parent):
   amplitudeScrollBar = new MyScrollBar(0.0, 1.0 - amplitudeWidget->range(), 0.20, amplitudeWidget->range(), 0, 20, Qt::Vertical, bottomWidget);
   bottomTopRightLayout->addWidget(amplitudeScrollBar, 4);
   
-  QHBoxLayout * bottomBottomLayout = new QHBoxLayout(bottomLayout);
+  QHBoxLayout * bottomBottomLayout = new QHBoxLayout();
+  bottomLayout->addLayout(bottomBottomLayout);
   
   QComboBox * amplitudeModeComboBox = new QComboBox(bottomWidget, "amplitudeTypeModeBox");
   amplitudeModeComboBox->setWhatsThis("Select different algorithm parameters to view in the bottom pannel");

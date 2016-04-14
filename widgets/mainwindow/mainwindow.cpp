@@ -1217,7 +1217,8 @@ TartiniDialog::TartiniDialog(QWidget *parent):
   
   layout->addWidget(tartiniTextEdit);
   
-  QHBoxLayout * bottomLayout = new QHBoxLayout(layout);
+  QHBoxLayout * bottomLayout = new QHBoxLayout();
+  layout->addLayout(bottomLayout);
   QPushButton * okButton = new QPushButton("&Ok", this);
   QPushButton * GPLButton = new QPushButton("&Read License", this);
   bottomLayout->addStretch(10);
@@ -1252,7 +1253,8 @@ GPLDialog::GPLDialog(QWidget *parent):
   
   layout->addWidget(GPLTextEdit);
   
-  QHBoxLayout * bottomLayout = new QHBoxLayout(layout);
+  QHBoxLayout * bottomLayout = new QHBoxLayout();
+  layout->addLayout(bottomLayout);
   QPushButton * okButton = new QPushButton("&Ok", this);
   bottomLayout->addStretch(10);
   bottomLayout->addWidget(okButton);
