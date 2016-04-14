@@ -1264,7 +1264,7 @@ GPLDialog::GPLDialog(QWidget *parent):
     QFile theFile(":res/LICENSE.txt");
     theFile.open(QIODevice::ReadOnly);
     QTextStream textStream(&theFile);
-    theText = textStream.read();
+    theText = textStream.readAll();
     theFile.close();
   }
   GPLTextEdit->setText(theText);
