@@ -1153,10 +1153,10 @@ void MainWindow::showDocumentation(void)
 TartiniDialog::TartiniDialog(QWidget *parent):
   QDialog(parent, NULL, true)
 {
-  setCaption("About Tartini - Version " TARTINI_VERSION_STR);
   setBackgroundColor(Qt::black);
 
   QHBoxLayout * topLayout = new QHBoxLayout(layout);
+  setWindowTitle("About Tartini - Version " TARTINI_VERSION_STR);
   QVBoxLayout * layout = new QVBoxLayout(this);
   layout->setContentsMargins(6,6,6,6);
   layout->setSpacing(6);
@@ -1256,8 +1256,8 @@ TartiniDialog::TartiniDialog(QWidget *parent):
 GPLDialog::GPLDialog(QWidget *parent):
   QDialog(parent, NULL, true)
 {
-  setCaption("GPL Licence");
 
+  setWindowTitle("GPL Licence");
   QVBoxLayout * layout = new QVBoxLayout(this);
   layout->setContentsMargins(6,6,6,6);
   layout->setSpacing(6);
