@@ -131,9 +131,9 @@
 MainWindow *mainWindow;
 MyGLFont *mygl_font;
 
-ViewData viewData[NUM_VIEWS] =
+ViewData viewData[NUM_VIEWS] = 
   {
-    // ViewData(title,                         menuName,                            className,         menu type);
+    //ViewData(title,                          menuName,                           className,           menu type);
     ViewData(QObject::tr("File List"),         QObject::tr("&File List"),          "OpenFiles",         0),
     ViewData(QObject::tr("Pitch Contour"),     QObject::tr("&Pitch Contour"),      "FreqView",          0),
     ViewData(QObject::tr("Chromatic Tuner"),   QObject::tr("&Chromatic Tuner"),    "TunerView",         0),
@@ -157,8 +157,9 @@ ViewData viewData[NUM_VIEWS] =
 
 //------------------------------------------------------------------------------
 MainWindow::MainWindow(void):
-  QMainWindow( NULL, Qt::WDestructiveClose )
+  QMainWindow(NULL)
 {
+  setAttribute(Qt::WA_DeleteOnClose);
   createSignalMapper = new QSignalMapper(this);
   connect(createSignalMapper, SIGNAL(mapped(int)), SLOT(openView(int)));
 
