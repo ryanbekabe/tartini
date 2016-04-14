@@ -47,7 +47,7 @@ FreqView::FreqView(int viewID_, QWidget *parent):
   View & view = gdata->getView();
 
   QVBoxLayout *mainLayout = new QVBoxLayout(this);
-  mainLayout->setResizeMode(QLayout::SetNoConstraint);
+  mainLayout->setSizeConstraint(QLayout::SetNoConstraint);
 
 
   QSplitter * splitter = new QSplitter(Qt::Vertical, this);
