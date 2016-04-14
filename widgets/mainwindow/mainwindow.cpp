@@ -488,7 +488,7 @@ MainWindow::MainWindow(void):
   timeLabel->setToolTip(tr("The current time positon for all files (mins:sec)"));
   connect(&(gdata->getView()), SIGNAL(onSlowUpdate(double)), this, SLOT(setTimeLabel(double)));
 
-  statusBar()->message( "Ready", 2000 );
+  statusBar()->showMessage( "Ready", 2000 );
 
   connect(gdata, SIGNAL(activeChannelChanged(Channel*)), this, SLOT(setTitle(Channel*)));
 }
@@ -830,7 +830,7 @@ void MainWindow::message(QString s, int msec)
   QStatusBar *sb = statusBar();
   if(sb)
     {
-      sb->message(s, msec);
+      sb->showMessage(s, msec);
     }
 }
 
