@@ -47,7 +47,7 @@ ScoreView::ScoreView(int viewID_, QWidget * parent):
   scaleWheelY->setWheelWidth(14);
   scaleWheelY->setRange(1.0, 30.0, 0.1, 1);
   scaleWheelY->setValue(scoreWidget->scaleY());
-  QToolTip::add(scaleWheelY, tr("Zoom vertically"));
+  scaleWheelY->setToolTip(tr("Zoom vertically"));
   rightLayout->addWidget(scaleWheelY, 1);
   rightLayout->addStretch(4);
   connect(scaleWheelY, SIGNAL(sliderMoved(double)), scoreWidget, SLOT(setScaleY(double)));
@@ -59,7 +59,7 @@ ScoreView::ScoreView(int viewID_, QWidget * parent):
   scaleWheelX->setWheelWidth(16);
   scaleWheelX->setRange(1.0, 100.0, 1.1, 1);
   scaleWheelX->setValue(scoreWidget->scaleX());
-  QToolTip::add(scaleWheelX, tr("Zoom horizontally"));
+  scaleWheelX->setToolTip(tr("Zoom horizontally"));
   connect(scaleWheelX, SIGNAL(sliderMoved(double)), scoreWidget, SLOT(setScaleX(double)));
   connect(scaleWheelX, SIGNAL(sliderMoved(double)), scoreWidget, SLOT(update()));
 

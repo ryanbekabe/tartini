@@ -57,7 +57,7 @@ HStackView::HStackView( int viewID_, QWidget * parent):
   dbRangeWheel->setWheelWidth(14);
   dbRangeWheel->setRange(5, 160.0, 0.1, 100);
   dbRangeWheel->setValue(100);
-  QToolTip::add(dbRangeWheel, "Zoom dB range vertically");
+  dbRangeWheel->setToolTip("Zoom dB range vertically");
   rightLayout->addWidget(dbRangeWheel, 0);
   rightLayout->addStretch(2);
 
@@ -66,7 +66,7 @@ HStackView::HStackView( int viewID_, QWidget * parent):
   windowSizeWheel->setWheelWidth(14);
   windowSizeWheel->setRange(32, 1024, 2, 1);
   windowSizeWheel->setValue(128);
-  QToolTip::add(windowSizeWheel, "Zoom windowsize horizontally");
+  windowSizeWheel->setToolTip("Zoom windowsize horizontally");
   bottomLayout->addWidget(windowSizeWheel, 0);
   bottomLayout->addStretch(2); 
 

@@ -59,7 +59,7 @@ HCircleView::HCircleView( int viewID_, QWidget *parent):
   ZoomWheel->setRange(0.001, 0.1, 0.001, 1);
   ZoomWheel->setValue(0.007);
   hCircleWidget->setZoom(0.007);
-  QToolTip::add(ZoomWheel, "Zoom in or out");
+  ZoomWheel->setToolTip("Zoom in or out");
   rightLayout->addWidget(ZoomWheel);
   
   QwtWheel * lowestValueWheel = new QwtWheel(this);
@@ -68,7 +68,7 @@ HCircleView::HCircleView( int viewID_, QWidget *parent):
   lowestValueWheel->setRange(-160, 10, 0.01, 1);
   lowestValueWheel->setValue(-100);
   hCircleWidget->setLowestValue(-100);
-  QToolTip::add(lowestValueWheel, "Change the lowest value");
+  lowestValueWheel->setToolTip("Change the lowest value");
   rightLayout->addWidget(lowestValueWheel);
   rightLayout->addStretch(2);
  
@@ -78,7 +78,7 @@ HCircleView::HCircleView( int viewID_, QWidget *parent):
   thresholdWheel->setRange(-160, 10, 0.01, 1);
   thresholdWheel->setValue(-100);
   hCircleWidget->setThreshold(-100);
-  QToolTip::add(thresholdWheel, "Change the harmonic threshold");
+  thresholdWheel->setToolTip("Change the harmonic threshold");
   bottomLayout->addWidget(thresholdWheel);
   bottomLayout->addStretch(2);
 

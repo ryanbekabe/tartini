@@ -49,27 +49,27 @@ HTrackView::HTrackView( int viewID_, QWidget *parent ):
     "Tracks alternate in colour for better visibility. It can be seen how the hamonics in a note fit into the musical scale.");
 
   peakThresholdSlider = new QSlider(0, 100, 10, 5, Qt::Vertical, this);
-  QToolTip::add(peakThresholdSlider, "Thresholding of harmonics");
+  peakThresholdSlider->setToolTip("Thresholding of harmonics");
   
   rotateXWheel = new QwtWheel(this);
   rotateXWheel->setWheelWidth(20);
   rotateXWheel->setRange(-180, 180, 0.1, 1);
-  QToolTip::add(rotateXWheel, "Rotate piano horizonally");
+  rotateXWheel->setToolTip("Rotate piano horizonally");
   
   rotateYWheel = new QwtWheel(this);
   rotateYWheel->setOrientation(Qt::Vertical);
   rotateYWheel->setWheelWidth(20);
   rotateYWheel->setRange(-90, 0, 0.1, 1);
-  QToolTip::add(rotateYWheel, "Rotate piano vertically");
+  rotateYWheel->setToolTip("Rotate piano vertically");
   
   distanceWheel = new QwtWheel(this);
   distanceWheel->setOrientation(Qt::Vertical);
   distanceWheel->setRange(100, 5000, 10, 20);
   distanceWheel->setTotalAngle(20*360);
-  QToolTip::add(distanceWheel, "Move towards/away from piano");
+  distanceWheel->setToolTip("Move towards/away from piano");
   
   QPushButton * homeButton = new QPushButton("Reset", this, "homebutton");
-  QToolTip::add(homeButton, "Return to the original view");
+  homeButton->setToolTip("Return to the original view");
   
   QSizeGrip * sizeGrip = new QSizeGrip(this);
   
