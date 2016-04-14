@@ -316,7 +316,6 @@ MainWindow::MainWindow(void):
 
   //Create the Window Menu
   windowMenu = menuBar()->addMenu(tr("&Windows"));
-  windowMenu->setCheckable( true );
   connect( windowMenu, SIGNAL( aboutToShow() ),
 	     this, SLOT( windowMenuAboutToShow() ) );
 
@@ -796,32 +795,33 @@ void MainWindow::windowMenuAboutToShow(void)
   QWidgetList windows = theWorkspace->windowList();
   for(int i = 0; i < int(windows.count()); ++i )
     {
-      int id = windowMenu->insertItem(windows.at(i)->caption(),
-				      this, SLOT( windowMenuActivated( int ) ) );
-      windowMenu->setItemParameter(id, i );
-      windowMenu->setItemChecked(id, theWorkspace->activeWindow() == windows.at(i) );
+      QAction * l_action = windowMenu->addAction(windows.at(i)->windowTitle(),this, SLOT( windowMenuActivated() ) );
+      l_action->setData(i);
+      l_action->setChecked(theWorkspace->activeWindow() == windows.at(i));
     }
   
-  windowMenu->insertSeparator();
-  int cascade = windowMenu->insertItem( "&Cascade", theWorkspace, SLOT( cascade() ), 0 );
-  int close = windowMenu->insertItem( "Close &All", this, SLOT( closeAllWidgets() ), 0 );
+  windowMenu->addSeparator();
+  QAction * cascade = windowMenu->addAction( "&Cascade", theWorkspace, SLOT( cascade() ));
+  QAction * close = windowMenu->addAction( "Close &All", this, SLOT( closeAllWidgets() ));
 
   if (windows.isEmpty())
     {
-      windowMenu->setItemEnabled( cascade, false );
-      windowMenu->setItemEnabled( close, false );
+      cascade->setEnabled(false);
+      close->setEnabled(false);
     }
 }
 
 //------------------------------------------------------------------------------
-void MainWindow::windowMenuActivated(int id)
+void MainWindow::windowMenuActivated(void)
 {
-  QWidget * w = theWorkspace->windowList().at(id);
-  if ( w )
-    {
-      w->showNormal();
-      w->setFocus();
-    }
+  int id = static_cast<QAction*>(sender())->data().toInt();
+  std::cout << "windowMenuActivated " << id << std::endl ;
+    QWidget* w = theWorkspace->windowList().at( id );
+    if ( w )
+      {
+    	w->showNormal();
+	w->setFocus();
+      }
 }
 
 //------------------------------------------------------------------------------

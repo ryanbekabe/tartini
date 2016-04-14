@@ -144,7 +144,7 @@ public slots:
   void menuPreferences(void);
 
   void windowMenuAboutToShow(void);
-  void windowMenuActivated(int id);
+  void windowMenuActivated(void);
   void newViewAboutToShow(void);
 
   /**
