@@ -1103,22 +1103,22 @@ void MainWindow::setTitle(Channel *ch)
 #ifdef MYDEBUG
   if(ch)
     {
-      setCaption(QString("Tartini (debug) - ") + ch->getUniqueFilename());
+      setWindowTitle(QString("Tartini (debug) - ") + ch->getUniqueFilename());
     }
   else
     {
-      setCaption(QString("Tartini (debug)"));
+      setWindowTitle(QString("Tartini (debug)"));
     }
-#else // MYDEBUG
+#else
   if(ch)
     {
-      setCaption(QString("Tartini - ") + ch->getUniqueFilename());
+      setWindowTitle(QString("Tartini - ") + ch->getUniqueFilename());
     }
   else
     {
-      setCaption(QString("Tartini"));
+      setWindowTitle(QString("Tartini"));
     }
-#endif // MYDEBUG
+#endif
 }
 
 //------------------------------------------------------------------------------
