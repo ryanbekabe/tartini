@@ -20,9 +20,10 @@
 
 //------------------------------------------------------------------------------
 MyScrollBar::MyScrollBar(Qt::Orientation orientation, QWidget *parent, const char *name):
-  QWidget(parent, name),
+  QWidget(parent),
   bar(new QScrollBar(orientation, this))
 {
+  setObjectName(name);
   bar->show();
 }
 
@@ -35,8 +36,9 @@ MyScrollBar::MyScrollBar(double minValue_,
 			 double step_,
 			 Qt::Orientation orientation,
 			 QWidget * parent,
-			 const char * name):
-  QWidget(parent, name),
+			 const char * name
+			 ):
+  QWidget(parent),
   _minValue(minValue_),
   _maxValue(maxValue_),
   _value(value_),
@@ -45,6 +47,7 @@ MyScrollBar::MyScrollBar(double minValue_,
   _step(step_),
   bar(new QScrollBar(orientation, this))
 {
+  setObjectName(name);
   bar->setMinimum(toInt(_minValue*_step));
   bar->setMaximum(toInt(_maxValue*_step));
   bar->setSingleStep(MAX(toInt(_lineStep*_step), 1));
