@@ -20,7 +20,7 @@ ViewWidget::ViewWidget( int p_view_ID, QWidget * /*p_parent*/, Qt::WFlags p_flag
   QWidget( NULL, Qt::WDestructiveClose | p_flags ),
   m_view_ID(p_view_ID)
 {
-  setCaption(viewData[m_view_ID].title);
+  setWindowTitle(viewData[m_view_ID].title);
   setAutoFillBackground(true);
 }
 

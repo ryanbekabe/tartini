@@ -38,7 +38,7 @@
 HStackView::HStackView( int viewID_, QWidget * parent):
   ViewWidget( viewID_, parent)
 {
-  setCaption("Harmonic Stack");
+  setWindowTitle("Harmonic Stack");
 
   QHBoxLayout * mainLayout = new QHBoxLayout(this);
 

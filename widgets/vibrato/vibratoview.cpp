@@ -52,7 +52,7 @@ VibratoView::VibratoView( int viewID_, QWidget * parent):
 {
   int noteLabelOffset = 28;
 
-  setCaption("Vibrato View");
+  setWindowTitle("Vibrato View");
 
   QGridLayout * mainLayout = new QGridLayout;
 
