@@ -457,7 +457,9 @@ MainWindow::MainWindow(void):
     "Note: For other scales the root note is chosen from the even-tempered scale with that 'A'."));
   addToolBar(freqAToolBar);
 
-  QSpinBox * freqASpinBox = new QSpinBox(400, 600, 1, freqAToolBar, "freqASpinBox");
+  QSpinBox * freqASpinBox = new QSpinBox(freqAToolBar);
+  freqASpinBox->setRange(400,600);
+  freqASpinBox->setSingleStep(1);
   freqASpinBox->setPrefix("A=");
   freqASpinBox->setSuffix(" Hz");
   freqASpinBox->setFocusPolicy(Qt::NoFocus);
