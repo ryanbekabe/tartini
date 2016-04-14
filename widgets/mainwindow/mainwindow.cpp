@@ -1166,7 +1166,8 @@ TartiniDialog::TartiniDialog(QWidget *parent):
   topLayout->addWidget(tartiniPicture);
   topLayout->addStretch(10);
 
-  QTextBrowser * tartiniTextEdit = new QTextBrowser(this, "TartiniTextEdit");
+  QTextBrowser * tartiniTextEdit = new QTextBrowser(this);
+  tartiniTextEdit->setObjectName("TartiniTextEdit");
   tartiniTextEdit->setOpenExternalLinks(true);
   tartiniTextEdit->setTextFormat(Qt::RichText);
 
