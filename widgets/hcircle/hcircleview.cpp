@@ -107,4 +107,9 @@ QSize HCircleView::sizeHint(void) const
   return QSize(300, 200);
 }
 
+//------------------------------------------------------------------------------
+void HCircleView::resizeEvent(QResizeEvent *)
+{
+  hCircleWidget->resize(size());
+}
 // EOF

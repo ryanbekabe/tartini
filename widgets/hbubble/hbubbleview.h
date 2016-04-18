@@ -32,6 +32,7 @@ class HBubbleView : public ViewWidget
   QSize sizeHint(void) const;
 
   private:
+    void resizeEvent(QResizeEvent *);
     HBubbleWidget *hBubbleWidget;
 };
 #endif // HBUBBLEVIEW_H
