@@ -72,15 +72,15 @@ TunerView::TunerView(int viewID_, QWidget *parent ):
   slider->setToolTip(tr("Increase slider to smooth the pitch over a longer time period"));
 
   ledBuffer = new QPixmap();
-  leds.push_back(new LEDIndicator(ledBuffer, this, "A"));
-  leds.push_back(new LEDIndicator(ledBuffer, this, "B"));
-  leds.push_back(new LEDIndicator(ledBuffer, this, "C"));
-  leds.push_back(new LEDIndicator(ledBuffer, this, "D"));
-  leds.push_back(new LEDIndicator(ledBuffer, this, "E"));
-  leds.push_back(new LEDIndicator(ledBuffer, this, "F"));
-  leds.push_back(new LEDIndicator(ledBuffer, this, "G"));
+  leds.push_back(new LEDIndicator(this, "A"));
+  leds.push_back(new LEDIndicator(this, "B"));
+  leds.push_back(new LEDIndicator(this, "C"));
+  leds.push_back(new LEDIndicator(this, "D"));
+  leds.push_back(new LEDIndicator(this, "E"));
+  leds.push_back(new LEDIndicator(this, "F"));
+  leds.push_back(new LEDIndicator(this, "G"));
 
-  leds.push_back(new LEDIndicator(ledBuffer, this, "#"));
+  leds.push_back(new LEDIndicator(this, "#"));
 
 
   // Add the leds for note names into the positions (1, 0) to (1, 6)

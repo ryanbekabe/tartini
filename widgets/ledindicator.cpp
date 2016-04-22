@@ -21,7 +21,7 @@
 #include <QPaintEvent>
 
 //------------------------------------------------------------------------------
-LEDIndicator::LEDIndicator(QPixmap *buffer, QWidget *parent, const char *name, const QColor &on, const QColor &off):
+LEDIndicator::LEDIndicator(QWidget *parent, const char *name, const QColor &on, const QColor &off):
   QWidget(parent)
 {
   setObjectName(name);
