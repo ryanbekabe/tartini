@@ -42,6 +42,7 @@ class OpenFiles : public ViewWidget
 
   private slots:
   void refreshChannelList(void);
+
   /**
    * Toggles a channel on or off for a specified item.
    *
@@ -52,7 +53,7 @@ class OpenFiles : public ViewWidget
   /**
    * Changes the active channel to the item.
    */
-  void slotCurrentChanged(int p_row, int p_column);
+  void slotCurrentChanged(int p_row);
   void slotActiveChannelChanged(Channel *active);
 };
 #endif // OPENFILES_H

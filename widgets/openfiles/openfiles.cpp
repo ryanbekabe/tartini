@@ -50,7 +50,7 @@ OpenFiles::OpenFiles(int id, QWidget *parent):
   m_table->verticalHeader()->setVisible(false);
   connect(gdata, SIGNAL(channelsChanged()), this, SLOT(refreshChannelList()));
   connect(gdata, SIGNAL(activeChannelChanged(Channel*)), this, SLOT(slotActiveChannelChanged(Channel *)));
-  connect(m_table, SIGNAL(cellClicked(int,int)), this, SLOT(slotCurrentChanged(int,int)));
+  connect(m_table, SIGNAL(cellClicked(int,int)), this, SLOT(slotCurrentChanged(int)));
 
   refreshChannelList();
 }
@@ -125,7 +125,7 @@ void OpenFiles::listViewChanged(void)
 }
 
 //------------------------------------------------------------------------------
-void OpenFiles::slotCurrentChanged(int p_row, int p_column)
+void OpenFiles::slotCurrentChanged(int p_row)
 {
   int l_selected_row = p_row;
   myassert(0 <= l_selected_row && l_selected_row < int(gdata->getChannelsSize()));
