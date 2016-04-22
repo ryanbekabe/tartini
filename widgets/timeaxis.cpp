@@ -25,7 +25,7 @@
 
 //------------------------------------------------------------------------------
 TimeAxis::TimeAxis(QWidget * p_parent, bool p_numbers_on_top):
-  DrawWidget(p_parent),
+  DrawWidget(p_parent, "TimeAxis"),
   m_left_time(0.0),
   m_right_time(0.0),
   m_numbers_on_top(p_numbers_on_top)
@@ -35,7 +35,7 @@ TimeAxis::TimeAxis(QWidget * p_parent, bool p_numbers_on_top):
 
 //------------------------------------------------------------------------------
 TimeAxis::TimeAxis(QWidget * p_parent, const double & p_left_time, const double & p_right_time, bool p_numbers_on_top):
-  DrawWidget(p_parent),
+  DrawWidget(p_parent, "TimeAxis"),
   m_left_time(p_left_time),
   m_right_time(p_right_time),
   m_numbers_on_top(p_numbers_on_top)

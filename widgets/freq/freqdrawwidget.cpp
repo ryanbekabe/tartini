@@ -45,7 +45,7 @@
 
 //------------------------------------------------------------------------------
 FreqDrawWidget::FreqDrawWidget(QWidget *parent, const char* name):
-  DrawWidget(parent)
+  DrawWidget(parent,name)
 {
   setMouseTracking(true);
   

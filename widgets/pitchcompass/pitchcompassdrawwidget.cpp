@@ -33,8 +33,9 @@
 PitchCompassDrawWidget::PitchCompassDrawWidget(QWidget *parent, const char* name, int mode)
   : QWidget(parent)
 {
+  setObjectName(name);
   setAttribute(Qt::WA_DeleteOnClose);
-    this->mode = mode;
+  this->mode = mode;
 
     compass = new QwtCompass(this);
     compass->setLineWidth(4);

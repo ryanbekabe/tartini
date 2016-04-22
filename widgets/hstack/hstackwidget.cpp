@@ -28,7 +28,7 @@
 
 //------------------------------------------------------------------------------
 HStackWidget::HStackWidget(QWidget *parent):
-  DrawWidget(parent)
+  DrawWidget(parent,"HStackWidget")
 {
   //make the widget get updated when the view changes
   windowSize = 128;

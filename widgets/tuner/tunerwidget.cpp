@@ -27,7 +27,7 @@
 
 //------------------------------------------------------------------------------
 TunerWidget::TunerWidget(QWidget *parent):
-  DrawWidget(parent)
+  DrawWidget(parent,"TunerWidget")
 {
   value_ = 0;
 }

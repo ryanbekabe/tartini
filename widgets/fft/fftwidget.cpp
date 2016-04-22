@@ -27,7 +27,7 @@
 
 //------------------------------------------------------------------------------
 FFTWidget::FFTWidget(QWidget *parent):
-  DrawWidget(parent)
+  DrawWidget(parent,"FFTWidget")
 {
 }
 

@@ -27,7 +27,7 @@
 
 //------------------------------------------------------------------------------
 HBubbleWidget::HBubbleWidget(QWidget *parent):
-  DrawWidget(parent)
+  DrawWidget(parent,"HBubbleWidget")
 {
 
   fprintf(stderr,"Initializing\n");

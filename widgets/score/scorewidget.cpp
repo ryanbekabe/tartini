@@ -31,7 +31,7 @@
 
 //------------------------------------------------------------------------------
 ScoreWidget::ScoreWidget(QWidget *parent):
-  DrawWidget(parent)
+  DrawWidget(parent,"ScoreWidget")
 {
   _scaleY = 10;
   _scaleX = 40;

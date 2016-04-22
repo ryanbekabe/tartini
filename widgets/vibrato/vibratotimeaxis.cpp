@@ -18,8 +18,8 @@
 #include "analysisdata.h"
 
 //------------------------------------------------------------------------------
-VibratoTimeAxis::VibratoTimeAxis(QWidget *parent, int nls):
-  DrawWidget(parent)
+VibratoTimeAxis::VibratoTimeAxis(QWidget * parent, int nls):
+  DrawWidget(parent,"VibratoTimeAxis")
 {
   QSizePolicy l_size_policy(QSizePolicy::Expanding, QSizePolicy::Fixed);
   l_size_policy.setHeightForWidth(false);

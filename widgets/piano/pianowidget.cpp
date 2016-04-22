@@ -40,7 +40,7 @@ static int isBlackKeyArray[12] =
 
 //------------------------------------------------------------------------------
 PianoWidget::PianoWidget(QWidget *parent):
-  DrawWidget(parent)
+  DrawWidget(parent,"PianoWidget")
 {
   setNoNote();
 }
