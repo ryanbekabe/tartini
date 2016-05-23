@@ -36,13 +36,13 @@
 class FreqWidgetGL : public QGLWidget
 {
 
-Q_OBJECT
+  Q_OBJECT
 
-public:
+ public:
   FreqWidgetGL(QWidget *parent, const char* name = NULL);
   virtual ~FreqWidgetGL(void);
 
-private:  
+ private:  
   enum DragModes
     {
       DragNone = 0,
