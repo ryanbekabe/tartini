@@ -48,15 +48,15 @@ class OpenFiles : public ViewWidget
    *
    * @param item the channel to toggle.
    */
-  void listViewChanged(Q3ListViewItem * item);
+  void listViewChanged(Q3ListViewItem* item);
 
   /**
    * Changes the active channel to the item.
    *
    * @param item the channel to toggle.
    */
-  void slotCurrentChanged(Q3ListViewItem * item);
-  void slotActiveChannelChanged(Channel * active);
+  void slotCurrentChanged(Q3ListViewItem* item);
+  void slotActiveChannelChanged(Channel *active);
 
 };
 #endif // OPENFILES_H
