@@ -72,8 +72,9 @@ void TunerWidget::paintEvent(QPaintEvent *)
     lines would eventually meet up with the radius of the circle (width()/2, radius).
 
   */
-
-  QPen pen(colorGroup().foreground(), 2);
+  QPalette l_palette;
+  QColor l_color = l_palette.color(QPalette::WindowText);
+  QPen pen(l_color, 2);
   // Border
   get_painter().setPen(pen);
 
@@ -92,8 +93,8 @@ void TunerWidget::paintEvent(QPaintEvent *)
     get_painter().drawArc(toInt(halfWidth - (radius / 2.0)), toInt(radius / 2.0), toInt(radius), toInt(radius), toInt((90 - thetaDeg) * 16), toInt(2 * thetaDeg * 16));
   }
  
-  get_painter().setPen(colorGroup().foreground());
-  get_painter().setBrush(colorGroup().foreground());
+  get_painter().setPen(l_color);
+  get_painter().setBrush(l_color);
   
     
   double step = (2 * theta) / 12.0;
@@ -111,7 +112,7 @@ void TunerWidget::paintEvent(QPaintEvent *)
   
   {
     //Draw the text labels
-    get_painter().setPen(colorGroup().foreground());
+    get_painter().setPen(l_color);
   
     const char *theNames[11] = { "+50", "+40", "+30", "+20", "+10", "0", "-10", "-20", "-30", "-40", "-50" };
     QFontMetrics fm = get_painter().fontMetrics();

@@ -44,7 +44,8 @@ void VibratoTimeAxis::paintEvent(QPaintEvent *)
 {
   beginDrawing(false);
 
-  fillBackground(colorGroup().background());
+  QPalette l_palette;
+  fillBackground(l_palette.color(QPalette::Window));
 
   doUpdate();
 

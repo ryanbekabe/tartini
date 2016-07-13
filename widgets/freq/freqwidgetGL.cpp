@@ -265,21 +265,24 @@ void FreqWidgetGL::paintGL(void)
     }
   glDisable(GL_LINE_SMOOTH);
 
+  QPalette l_palette;
+  QColor l_foreground = l_palette.color(QPalette::WindowText);
   // Draw a light grey band indicating which time is being used in the current window
   if(gdata->getActiveChannel())
     {
-      QColor lineColor = colorGroup().foreground();
+      QPalette l_palette;
+      QColor lineColor = l_foreground;
       lineColor.setAlpha(50);
       Channel *ch = gdata->getActiveChannel();
       double halfWindowTime = (double)ch->size() / (double)(ch->rate() * 2);
       int pixelLeft = view.screenPixelX(view.currentTime() - halfWindowTime);
       int pixelRight = view.screenPixelX(view.currentTime() + halfWindowTime);
       qglColor(lineColor);
-      mygl_rect(pixelLeft, 0, pixelRight-pixelLeft, height() - 1);
+      mygl_rect(pixelLeft, 0, pixelRight - pixelLeft, height() - 1);
     }
 
   // Draw the current time line
-  qglColor(colorGroup().foreground());
+  qglColor(l_foreground);
   glLineWidth(1.0f);
   mygl_line(curTimePixel, 0, curTimePixel, height() - 1);
 }

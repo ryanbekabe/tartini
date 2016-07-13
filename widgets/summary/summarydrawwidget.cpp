@@ -69,15 +69,16 @@ void SummaryDrawWidget::paintEvent(QPaintEvent *)
       drawChannel(*this, ch, get_painter(), gdata->leftTime(), view.currentTime(), (gdata->totalTime() / (double) width()), 0.0f, (double) gdata->topPitch() / (double) height(), DRAW_VIEW_SUMMARY);
     }
 
-  //draw the view rectangle 
-  get_painter().setPen(QPen(colorGroup().highlight(), 1));
-  get_painter().drawRect(int((gdata->leftTime() + view.viewLeft()) * timeRatio), height() - 1 - int((view.viewTop()) * pitchRatio),
+  //draw the view rectangle
+  QPalette l_palette;
+  get_painter().setPen(QPen(l_palette.color(QPalette::Highlight), 1));
+  get_painter().drawRect(int((gdata->leftTime() + view.viewLeft()) * timeRatio), height() - 1 -int((view.viewTop()) * pitchRatio),
 		     int(view.viewWidth() * timeRatio), int(view.viewHeight() * pitchRatio));
 
   //draw the current time line
-  get_painter().setPen(QPen(colorGroup().foreground(), 1));
+  get_painter().setPen(QPen(l_palette.color(QPalette::WindowText), 1));
   get_painter().drawLine(int((gdata->leftTime() + view.currentTime()) * timeRatio), 0, 
-		      int((gdata->leftTime() + view.currentTime()) * timeRatio), height() - 1);
+		     int((gdata->leftTime() + view.currentTime()) * timeRatio), height() - 1);
 
   endDrawing();
 }

@@ -33,7 +33,8 @@ MyLabel::MyLabel(const QString &text_, QWidget *parent, const char * name):
 void MyLabel::paintEvent( QPaintEvent * )
 {
   beginDrawing(false);
-  fillBackground(colorGroup().background());
+  QPalette l_palette;
+  fillBackground(l_palette.color(QPalette::Window));
   get_painter().drawText(4, _fontHeight - 2, _text);
   endDrawing();
 }

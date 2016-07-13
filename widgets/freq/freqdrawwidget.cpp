@@ -25,6 +25,7 @@
 #include <QKeyEvent>
 #include <QEvent>
 #include <QPaintEvent>
+#include <QPalette>
 
 // zoom cursors
 #include "pics/zoomx.xpm"
@@ -182,10 +183,12 @@ void FreqDrawWidget::paintEvent(QPaintEvent *)
       drawChannel(*this, ch, get_painter(), view.viewLeft(), view.currentTime(), view.zoomX(), view.viewBottom(), view.zoomY(), DRAW_VIEW_NORMAL);
     }
 
+  QPalette l_palette;
+  QColor l_foreground = l_palette.color(QPalette::WindowText);
   // Draw a light grey band indicating which time is being used in the current window
   if(gdata->getActiveChannel())
     {
-      QColor lineColor = colorGroup().foreground();
+      QColor lineColor = l_foreground;
       lineColor.setAlpha(50);
       Channel *ch = gdata->getActiveChannel();
       double halfWindowTime = (double)ch->size() / (double)(ch->rate() * 2);
@@ -195,7 +198,7 @@ void FreqDrawWidget::paintEvent(QPaintEvent *)
     }
 
   // Draw the current time line
-  get_painter().setPen(QPen(colorGroup().foreground(), 1));
+  get_painter().setPen(QPen(l_foreground, 1));
   get_painter().drawLine(curTimePixel, 0, curTimePixel, height() - 1);
 
   endDrawing();

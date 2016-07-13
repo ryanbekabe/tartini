@@ -135,7 +135,8 @@ void AmplitudeWidget::paintGL(void)
 
   // Draw the current time line
   glDisable(GL_LINE_SMOOTH);
-  qglColor(colorGroup().foreground());
+  QPalette l_palette;
+  qglColor(l_palette.color(QPalette::WindowText));
   glLineWidth(1.0);
   double curScreenTime = (view.currentTime() - view.viewLeft()) / view.zoomX();
   mygl_line(curScreenTime, 0, curScreenTime, height() - 1);
